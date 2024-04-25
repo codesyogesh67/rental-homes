@@ -60,7 +60,7 @@ const ListingCard: React.FC<IListingProps> = (
   // const images: string[] = [img1, img2, img3].filter((img) => img)?.filter(Boolean) as string[];
 
   // const images: ImagesListProps = tags.map(({ tags }: { tags: string[] }) => { return tags })
-
+    
     return (
     
         <div className="flex flex-row border border-black-500">

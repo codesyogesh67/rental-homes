@@ -1,6 +1,6 @@
 'use client'
 
-import React,{useState, useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import {
     Pagination,
     PaginationContent,
@@ -9,52 +9,79 @@ import {
     PaginationLink,
     PaginationNext,
     PaginationPrevious,
-} from "@/components/ui/pagination"
-import {demodata} from "@/lib/images-db"
+  } from "@/components/ui/pagination"
+import { useRouter, useSearchParams } from "next/navigation";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from './ui/button';
+import {SearchParamProps} from '@/types'
+
+interface Listing {
+  title: string;
+  prop_addr: string;
+  img1: string | null;
+  img2: string | null;
+  img3: string | null;
+  bath: string | null;
+  bedroom: string | null;
+  pricew: string | null;
+  prices: string | null;
+  avail: string;
+  // Add other properties as needed
+}
+  
 
 
-interface ListingPaginationProps {
+
+interface PaginationSectionProps {
     totalPosts: number ;
-    postsPerPage: number;
+    listingsPerPage: number;
     currentPage: number;
-    setCurrentPage: any;
     
+
+    
+}
+interface ListingPaginationProps {
+  data: Listing[];
+  totalLength: number
 }
 
 
-export default function ListingPagination() {
+const ListingPagination:React.FC<ListingPaginationProps>=({data,totalLength} ) => {
     const [isClient, setIsClient] = useState(false);
 
+  const searchParams = useSearchParams()
+  
+  const currentPage = searchParams.get('page') ?? '1'
+  const listingsPerPage = 3
 
     useEffect(() => {
         setIsClient(true)
     },[])
   
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(2);
+    // const [currentPage, setCurrentPage] = useState(1);
 
-    const lastPostIndex = currentPage * postsPerPage;
-    const firstPostIndex = lastPostIndex - postsPerPage;
-    const currentPosts = demodata.slice(firstPostIndex, lastPostIndex);
+    const lastPostIndex = currentPage * listingsPerPage;
+    const firstPostIndex = lastPostIndex - listingsPerPage;
+    const currentPosts = data?.slice(firstPostIndex, lastPostIndex);
   
     return (
       <>
         {/* <button onClick={resetLocalStorage}>Reset Local Storage</button> */}
-        {isClient ? (
+        {/* {isClient ? ( */}
           <>
            
             <PaginationSection
-              totalPosts={demodata.length}
-              postsPerPage={postsPerPage}
+              totalPosts={totalLength}
+            listingsPerPage={3}
               currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
+            
             />
           </>
-        ) : (
-                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 w-full p-10">
-                        Pagination Not Available
-          </div>
-        )}
+        {/* // ) : (
+        //             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 w-full p-10">
+        //                 Pagination Not Available
+        //   </div>
+        // )} */}
       </>
     );
   }
@@ -62,20 +89,17 @@ export default function ListingPagination() {
 
 
 
-
-
-
-
-const PaginationSection = ({totalPosts,postsPerPage, currentPage,setCurrentPage}:ListingPaginationProps ) => {
+const PaginationSection = ({totalPosts,listingsPerPage, currentPage}:PaginationSectionProps ) => {
 
   const [isClient, setIsClient] = useState(false);
 
 
-    
+  const searchParams = useSearchParams()
+  const router = useRouter()
 
 
     const pageNumbers = [];
-    for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(totalPosts / listingsPerPage); i++) {
       pageNumbers.push(i);
     }
   
@@ -87,69 +111,78 @@ const PaginationSection = ({totalPosts,postsPerPage, currentPage,setCurrentPage}
       Math.min(currentPage - 1 + pageNumLimit + 1, pageNumbers.length)
     );
   
-    const handleNextPage = () => {
-      if (currentPage < pageNumbers.length) {
-        setCurrentPage(currentPage + 1);
-      }
+
+    const changePage = (page: number) => {
+      const params = new URLSearchParams(searchParams);
+      params.set("page", page.toString());
+      router.push("?" + params.toString());
     };
   
-    const handlePrevPage = () => {
-      if (currentPage > 1) {
-        setCurrentPage(currentPage - 1);
-      }
-    };
+    // const handleNextPage = () => {
+    //   if (currentPage < pageNumbers.length) {
+    //     setCurrentPage(currentPage + 1);
+    //   }
+    // };
+  
+    // const handlePrevPage = () => {
+    //   if (currentPage > 1) {
+    //     setCurrentPage(currentPage - 1);
+    //   }
+    // };
 
-    // Function to render page numbers with ellipsis
+//     // Function to render page numbers with ellipsis
   const renderPages = () => {
     const renderedPages = activePages.map((page, idx) => (
       <PaginationItem
         key={idx}
         className={currentPage === page ? "bg-neutral-100 rounded-md cursor-pointer": "cursor-pointer"}
       >
-        <PaginationLink onClick={() => setCurrentPage(page)}>
+        <PaginationLink onClick={() => changePage(page)}>
           {page}
         </PaginationLink>
       </PaginationItem>
     ));
 
     // Add ellipsis at the start if necessary
-    if (activePages[0] > 1) {
-      renderedPages.unshift(
-        <PaginationEllipsis
-          key="ellipsis-start"
-          onClick={() => setCurrentPage(activePages[0] - 1)}
-        />
-      );
-    }
+    // if (activePages[0] > 1) {
+    //   renderedPages.unshift(
+    //     <PaginationEllipsis
+    //       key="ellipsis-start"
+    //       onClick={() => changePage(activePages[0] - 1)}
+    //     />
+    //   );
+    // }
 
     // Add ellipsis at the end if necessary
-    if (activePages[activePages.length - 1] < pageNumbers.length) {
-      renderedPages.push(
-        <PaginationEllipsis
-          key="ellipsis-end"
-          onClick={() =>
-            setCurrentPage(activePages[activePages.length - 1] + 1)
-          }
-        />
-      );
-    }
+    // if (activePages[activePages.length - 1] < pageNumbers.length) {
+    //   renderedPages.push(
+    //     <PaginationEllipsis
+    //       key="ellipsis-end"
+    //       onClick={() =>
+    //         changePage(activePages[activePages.length - 1] + 1)
+    //       }
+    //     />
+    //   );
+    // }
 
     return renderedPages;
   };
+
 
 
     return (
       <Pagination>
     <PaginationContent className="">
       <PaginationItem className="cursor-pointer">
-                    <PaginationPrevious oClick={handlePrevPage} />
+                    <PaginationPrevious onClick={() => Number(currentPage) > 1 && changePage(currentPage - 1)} />
       </PaginationItem>
-      {renderPages()}
+    
+          {renderPages()}
       {/* <PaginationItem>
         <PaginationEllipsis />
       </PaginationItem> */}
      <PaginationItem className="cursor-pointer">
-        <PaginationNext oClick={handleNextPage} />
+        <PaginationNext onClick={() => Number(currentPage) < pageNumbers.length && changePage(Number(currentPage) + 1)} />
       </PaginationItem>
     </PaginationContent>
   </Pagination>
@@ -158,3 +191,4 @@ const PaginationSection = ({totalPosts,postsPerPage, currentPage,setCurrentPage}
 
 
 
+export default ListingPagination;
