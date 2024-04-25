@@ -11,9 +11,7 @@ import {
     PaginationPrevious,
   } from "@/components/ui/pagination"
 import { useRouter, useSearchParams } from "next/navigation";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from './ui/button';
-import {SearchParamProps} from '@/types'
+
 
 interface Listing {
   title: string;
@@ -89,7 +87,8 @@ const ListingPagination:React.FC<ListingPaginationProps>=({data,totalLength} ) =
 
 
 
-const PaginationSection = ({totalPosts,listingsPerPage, currentPage}:PaginationSectionProps ) => {
+const PaginationSection = ({ totalPosts, listingsPerPage, currentPage }: PaginationSectionProps) => {
+  console.log("total length of data",totalPosts)
 
   const [isClient, setIsClient] = useState(false);
 
@@ -98,7 +97,7 @@ const PaginationSection = ({totalPosts,listingsPerPage, currentPage}:PaginationS
   const router = useRouter()
 
 
-    const pageNumbers = [];
+  const pageNumbers: number[] = [];
     for (let i = 1; i <= Math.ceil(totalPosts / listingsPerPage); i++) {
       pageNumbers.push(i);
     }
@@ -111,6 +110,7 @@ const PaginationSection = ({totalPosts,listingsPerPage, currentPage}:PaginationS
       Math.min(currentPage - 1 + pageNumLimit + 1, pageNumbers.length)
     );
   
+ 
 
     const changePage = (page: number) => {
       const params = new URLSearchParams(searchParams);

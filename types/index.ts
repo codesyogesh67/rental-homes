@@ -5,6 +5,11 @@
     // category: string
     limit: number
     page: number
+    leaseType?: string;
+      // startDateTime,
+      // endDateTime,
+  bathroomsCount?: number;
+  bedroomsCount?: number;
   }
 
    

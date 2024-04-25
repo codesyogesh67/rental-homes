@@ -20,21 +20,7 @@ interface ListingProps {
     
 }
 
-const bedrooms = [
-    {
-        title: 'Bedroom 1',
-        features: ['1 King','1 Single']
-    },
-    {
-        title: 'Bedroom 2',
-        features: ['1 Queen']
-    },
-    {
-        title: 'Bedroom 3',
-        features: ['1 Single']
-    }
 
-]
 
 const ListingPage =  async({params :{listingId}}:listingParamProps) => {
 

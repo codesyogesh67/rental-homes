@@ -49,7 +49,6 @@ const onSubmit = (values:FormValuesProps) => {
 
     const { leaseType, startDateTime, endDateTime, bedroomsCount, bathroomsCount } = values;
 
-
     // Update the URL based on the presence of the 'query' parameter
 
     let newUrl;
@@ -82,7 +81,7 @@ const onSubmit = (values:FormValuesProps) => {
       });
     }
   
-
+   
     
     router.push(newUrl, { scroll: false });
   

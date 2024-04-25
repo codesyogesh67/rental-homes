@@ -21,11 +21,11 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
 
   // const [currentPage, setCurrentPage] = useState(1);
 
-  const page = Number(searchParams?.page) || 1;
+  
   const data = await getListings({
     query: searchParams,
-    page: page,
-    limit: 3
+    // page: page,
+    // limit: 3
   })
   const { listings,totalLength } = data;
 
@@ -49,7 +49,7 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
       <div className="flex-[0.4] lg:max-w-[300px] flex flex-col items-center mt-10">
         <div className="w-full max-w-[500px]">
           
-        {/* <SearchForm /> */}
+        <SearchForm />
    </div>
    <div className="w-full max-w-[500px] mt-8 lg:mt-4">
         {/* <AdvancedSearchForm /> */}
