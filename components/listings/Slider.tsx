@@ -23,6 +23,7 @@ function Slider({ images, slug }: SliderProps) {
     
 
 
+
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
     const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;

@@ -1,9 +1,10 @@
 
-  export type GetAllEventsParams = {
-    query: string
+
+  export type GetAllPropertiesParams = {
+    // query: string
     // category: string
     limit: number
-    // page: number
+    page: number
   }
 
    
