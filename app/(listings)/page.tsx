@@ -12,7 +12,8 @@ import {demodata} from "@/lib/images-db"
 import AdvancedSearchForm from '@/components/forms/AdvancedSearchForm';
 // import ListingPagination from '@/components/Pagination';
 import  ListingPagination  from '@/components/Pagination';
-
+import MapComponent from '@/components/MapComponent'
+import { getLocations } from '@/actions/get-location';
 
 
 
@@ -27,7 +28,12 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
     // page: page,
     // limit: 3
   })
-  const { listings,totalLength } = data;
+  const { listings, totalLength } = data;
+
+  
+  const locations = await getLocations(listings);
+  console.log('locations',locations)
+
 
  
   return (
@@ -69,10 +75,11 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
   
 
 
-  {/* <div className="h-[300px] md:h-[500px] my-10"> */}
+  <div className="h-[300px] md:h-[500px] my-10">
 
-      {/* <Map /> */}
-      {/* </div> */}
+        {/* <Map data={listings} /> */}
+        <MapComponent data={locations} />
+      </div>
         <CalendarModal />
   </Container>
     )
