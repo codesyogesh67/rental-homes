@@ -8,7 +8,8 @@ import CalendarModal from '../modals/CalendarModal';
 import useCalendarModal from '@/app/hooks/useCalendarModal';
 import Slider from "@/components/listings/Slider"
 import { useRouter } from "next/navigation";
-import {imagestag} from "@/lib/images-db"
+import { imagestag } from "@/lib/images-db"
+
 
 
 
@@ -26,15 +27,13 @@ interface IListingProps{
     
         avail: string
     },
-  slug: number
+  slug: number,
+
     
  
 }
 
-// interface ImagesListProps{
-//   title: string
-//   tags: string[]
-// }
+
 
 const ListingCard: React.FC<IListingProps> = (
     {
@@ -44,6 +43,7 @@ const ListingCard: React.FC<IListingProps> = (
     }
  
 ) => {
+
   const openCalendar = useCalendarModal();
   const router = useRouter();
  
@@ -135,7 +135,13 @@ const ListingCard: React.FC<IListingProps> = (
         <div className="flex flex-row gap-2">
                 <Button onClick={() => calendarButton(avail)} className="w-full bg-transparent text-black hover:bg-green hover:text-white">Availability</Button>
                 <Button className="w-full bg-transparent text-black hover:bg-green hover:text-white">Lease Property</Button>
-                </div>
+          </div>
+          
+
+        
+
+
+
             </div>
         
           

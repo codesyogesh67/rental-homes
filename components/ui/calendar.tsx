@@ -1,6 +1,6 @@
 "use client"
 
-import * as React from "react"
+import  {useState} from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker } from "react-day-picker"
 
@@ -15,9 +15,44 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: CalendarProps) {
+  // const data = props.listings[0]?.avail;
+  const data = props.availDays;
+  const months = {
+    'F': 5, // June
+    'G': 6, // July
+    'H': 7, // August
+    'I' :8 //September
+    // Add more months as needed
+  };
+
+  const availableDates = []
+  const items = data.split(',')
+ 
+
+  // Iterate over each item and create Date objects
+items.forEach(item => {
+  const monthKey = item.charAt(0);
+  const day = parseInt(item.substring(1));
+
+  // Check if the month key exists in the months object
+  if (months.hasOwnProperty(monthKey)) {
+    const month = months[monthKey];
+    // Create a new Date object and push it to the dates array
+    availableDates.push(new Date(2024, month - 1, day)); // Months in JavaScript are zero-based
+  }
+});
+
+ 
+  // const [selectedDay, setSelectedDay] = useState<Date[]>();
   return (
     <DayPicker
-      showOutsideDays={showOutsideDays}
+      // showOutsideDays={showOutsideDays}
+      numberOfMonths={4} 
+      disableNavigation
+      fromMonth={new Date(2024,5)}
+
+      selected={availableDates}
+    
       className={cn("p-3", className)}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
@@ -30,7 +65,9 @@ function Calendar({
           "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100"
         ),
         nav_button_previous: "absolute left-1",
+        // nav_button_previous: "hidden",
         nav_button_next: "absolute right-1",
+        // nav_button_next: "hidden",
         table: "w-full border-collapse space-y-1",
         head_row: "flex",
         head_cell:
@@ -43,7 +80,8 @@ function Calendar({
         ),
         day_range_end: "day-range-end",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+          // "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
+          "bg-black text-white",
         day_today: "bg-accent text-accent-foreground",
         day_outside:
           "day-outside text-muted-foreground opacity-50 aria-selected:bg-accent/50 aria-selected:text-muted-foreground aria-selected:opacity-30",

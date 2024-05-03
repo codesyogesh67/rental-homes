@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
+import { Calendar } from "@/components/ui/calendar"
 
 
 interface ModalProps {
@@ -15,7 +16,8 @@ interface ModalProps {
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
-  availability:string
+  availability: string[],
+  data:Object[]
  
 }
 
@@ -29,7 +31,8 @@ const Modal: React.FC<ModalProps> = ({
   footer, 
   disabled,
   secondaryAction,
-  secondaryActionLabel
+  secondaryActionLabel,
+  data
 }) => {
   const [showModal, setShowModal] = useState(isOpen);
  
@@ -63,6 +66,7 @@ const Modal: React.FC<ModalProps> = ({
     return null;
   }
 
+
   return (
     <>
       <div
@@ -83,10 +87,6 @@ const Modal: React.FC<ModalProps> = ({
       >
         <div className="
           relative 
-          w-full
-          md:w-4/6
-          lg:w-3/6
-          xl:w-2/5
           my-6
           mx-auto 
           h-full 
@@ -99,6 +99,8 @@ const Modal: React.FC<ModalProps> = ({
             translate
             duration-300
             h-full
+            w-full
+         
             ${showModal ? 'translate-y-0' : 'translate-y-full'}
             ${showModal ? 'opacity-100' : 'opacity-0'}
           `}>
@@ -120,6 +122,7 @@ const Modal: React.FC<ModalProps> = ({
               bg-white 
               outline-none 
               focus:outline-none
+            
             "
             >
               {/*header*/}
@@ -152,7 +155,13 @@ const Modal: React.FC<ModalProps> = ({
               </div>
               {/*body*/}
               <div className="relative p-6">
-                {body}
+                {/* {body} */}
+                <div className="flex">
+                  <Calendar availDays={availability}/>
+                  {/* <Calendar />
+                  <Calendar /> */}
+                </div>
+               
               </div>
               {/*footer*/}
              

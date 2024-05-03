@@ -42,7 +42,7 @@ const convertToDate = (dateString: string): Date => {
 // Convert each date string to Date object
 const datesAsDates: Date[] = datesArray.map(convertToDate);
 
-console.log(datesAsDates);
+
 
   return (
     <>

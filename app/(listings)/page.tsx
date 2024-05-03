@@ -31,8 +31,8 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
   const { listings, totalLength } = data;
 
   
-  const locations = await getLocations(listings);
-  console.log('locations',locations)
+  // const locations = await getLocations(listings);
+
 
 
  
@@ -78,9 +78,9 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
   <div className="h-[300px] md:h-[500px] my-10">
 
         {/* <Map data={listings} /> */}
-        <MapComponent data={locations} />
+        {/* <MapComponent data={locations} /> */}
       </div>
-        <CalendarModal />
+      <CalendarModal listings={listings}/>
   </Container>
     )
 }

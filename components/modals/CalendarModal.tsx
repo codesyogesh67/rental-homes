@@ -14,7 +14,7 @@ import Modal from "./Modal";
 
 
 
-const CalendarModal= () => {
+const CalendarModal= ({listings}) => {
 const calendarModal = useCalendarModal()
   const [isLoading, setIsLoading] = useState(false);
     
@@ -41,10 +41,11 @@ const calendarModal = useCalendarModal()
       disabled={isLoading}
       isOpen={calendarModal.isOpen}
       title="Availability Dates"
-      availability="availability"
+      availability={calendarModal.availability}
       onClose={calendarModal.onClose}
       // onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
+      data={listings}
 
     />
   );
