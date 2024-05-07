@@ -8,6 +8,7 @@ import Image from "next/image"
 import {useRouter} from 'next/navigation'
 import FooterLinks from './FooterLinks';
 import SubscribeForm from '../forms/SubscribeForm';
+import NewsletterForm from '../forms/NewsletterForm';
 
 // import Links from './Links';
 
@@ -22,7 +23,7 @@ const Footer = () => {
 
                     <FooterLinks />
                     <SubscribeForm />
-                   
+                   {/* <NewsletterForm /> */}
                              
                              
                              

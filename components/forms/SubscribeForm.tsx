@@ -8,16 +8,33 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Input } from "@/components/ui/input"
 import * as z from 'zod'
 import {subscribeFormSchema} from "@/lib/validator"
-
+import {postEmails} from "@/actions/post-emails"
 
 
 
 const SubscribeForm = () => {
-    
-const onSubmit = (values:any) => {
+  
+const onSubmit = async(values:any) => {
+console.log("values",values)
+console.log("submitting...")
+  const email = values.email;
+  // const button = buttonRef.current;
+
+  // if (!email || !button) return;
+  if (!email) return;
+
+  const res = await fetch("/api/addSubscription", {
+    body: JSON.stringify({ email }),
+    headers: { "Content-Type": "application/json" },
+    method: "POST",
+  });
+
+  // postEmails({email}).then(data => {console.log("Received data",data)})
 
    
 };
+  
+ 
     
 const form = useForm<z.infer<typeof subscribeFormSchema>>({
     resolver: zodResolver(subscribeFormSchema),

@@ -45,7 +45,8 @@ function Slider({ images, slug }: SliderProps) {
 <>
         <Image
           // src={`/upload_img/${images[validIndex]}`}
-          src={images[validIndex] ? `/upload_img/${images[validIndex]}` : `/upload_img/162CRES_1_1.JPG?1615901839}`}
+          // src={images[validIndex] ? `/upload_img/${images[validIndex]}` : `/upload_img/162CRES_1_1.JPG?1615901839}`}
+          src="/upload_img/162CRES_1_1.JPG?1615901839"
           //  src={`https://trackrental.com/trackrental/upload_img/${images[validIndex]}`}
           //  src="https://trackrental.com/trackrental/upload_img/162CRES_1_1.JPG?1615901839"
           // src={`https://trackrental.com/trackrental/upload_img/${images[validIndex]}`}
