@@ -58,27 +58,28 @@ function Slider({ images, slug }: SliderProps) {
                 onClick={() => router.push(`/saratoga-rental-homes-listing-${slug}`)}   
          />
    
- 
-      {/* Left Arrow */}
-      <div onClick={prevSlide}  className='absolute top-[90%] -translate-x-0 translate-y-[-50%] left-2 text-2xl rounded-full p-2 bg-black/60 text-white cursor-pointer'>
-        <BsChevronCompactLeft size={16} />
-      </div>
-      {/* Right Arrow */}
-      <div className='absolute top-[90%] -translate-x-0 translate-y-[-50%] right-2 text-2xl rounded-full p-2 bg-black/60 text-white cursor-pointer'>
+      <div className="absolute px-2 pb-2 flex justify-between items-center bottom-0 border-red-500 h-50 w-full z-10">
+          {/* Left Arrow */}
+       <div onClick={prevSlide}  className='left-2 text-2xl rounded-full p-2 bg-black/60 text-white cursor-pointer'>
+
+            <BsChevronCompactLeft size={16} />
+          </div>
+          <div className='flex justify-center py-2'>
+{images?.map((slide, slideIndex) => (
+  <div
+    key={slideIndex}
+    onClick={() => goToSlide(slideIndex)}
+    className='text-2xl cursor-pointer'
+  >
+    <RxDotFilled className="bg-white h-[4px] text-white mr-2" />
+  </div>
+))}
+  </div>
+          {/* Right Arrow */}
+        <div className='right-2 text-2xl rounded-full p-2 bg-black/60 text-white cursor-pointer'>
         <BsChevronCompactRight onClick={nextSlide} size={16} />
-      </div>
-      <div className='absolute translate-y-40 translate-x-16 flex justify-center py-2'>
-        {images?.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className='text-2xl cursor-pointer'
-          >
-            <RxDotFilled className="bg-white h-[4px] text-white mr-2" />
+</div>
           </div>
-        ))}
-          </div>
-      
     </>
          
   
@@ -86,3 +87,4 @@ function Slider({ images, slug }: SliderProps) {
 }
 
 export default Slider;
+

@@ -63,11 +63,13 @@ const ListingCard: React.FC<IListingProps> = (
     
     return (
     
-        <div className="flex flex-row border border-black-500">
+        <div className="flex flex-col md:flex-row border border-black-500">
           <div 
             className="
-              aspect-square          
-              w-64 h-48 
+              aspect-square
+              w-full 
+              max-h-[400px]        
+              md:w-64 md:h-48 
    
             "
                 >
@@ -101,7 +103,7 @@ const ListingCard: React.FC<IListingProps> = (
                    
           </div>
           <div className="flex-1 py-2">
-                <div className="pl-5 text-sm">
+                <div className="pl-5 text-sm py-2">
                 {prop_addr}
                 
               </div>

@@ -42,7 +42,7 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
     <p className="uppercase text-2xl my-3 font-medium">Featured Listings:</p>
     <div className="w-36 h-2 bg-lightgreen my-4 mb-10 " />
     <div className="flex flex-col lg:flex-row">
-    <div className="flex-1 mr-6 mt-10">
+    <div className="flex-1 mr-6 mt-10 grid gap-8">
    
         {
           listings.map((each, index) => (
