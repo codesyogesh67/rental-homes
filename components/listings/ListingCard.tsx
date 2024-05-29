@@ -66,11 +66,12 @@ const ListingCard: React.FC<IListingProps> = (
         <div className="flex flex-col md:flex-row border border-black-500">
           <div 
             className="
-              aspect-square
+         
               w-full 
-              max-h-[400px]        
-              md:w-64 md:h-48 
-   
+              max-h-[400px]    
+              md:w-64
+              h-screen
+              md:h-full
             "
                 >
           <div className="w-full h-full relative cursor-pointer" >
@@ -103,7 +104,7 @@ const ListingCard: React.FC<IListingProps> = (
                    
           </div>
           <div className="flex-1 py-2">
-                <div className="pl-5 text-sm py-2">
+                <div className="pl-5 text-sm">
                 {prop_addr}
                 
               </div>
@@ -126,7 +127,7 @@ const ListingCard: React.FC<IListingProps> = (
               
 
 
-                    <div className="pl-5">
+                    <div className="pl-5 py-4">
                     <IoPawSharp /> <span>Pets Ok</span>
                     </div>
           </div>

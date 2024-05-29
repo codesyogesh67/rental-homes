@@ -38,11 +38,11 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
  
   return (
     <Container>
-    <div className="pt-32 pb-12">
-    <p className="uppercase text-2xl my-3 font-medium">Featured Listings:</p>
+    <div className="pt-20 pb-12">
+    <p className="uppercase text-2xl font-medium">Featured Listings:</p>
     <div className="w-36 h-2 bg-lightgreen my-4 mb-10 " />
     <div className="flex flex-col lg:flex-row">
-    <div className="flex-1 mr-6 mt-10 grid gap-8">
+    <div className="flex-1 md:mr-6 grid gap-8 mb-8">
    
         {
           listings.map((each, index) => (
@@ -52,7 +52,7 @@ const Listings = async ({ searchParams }: SearchParamProps) => {
         </div>
      
    
-      <div className="flex-[0.4] lg:max-w-[300px] flex flex-col items-center mt-10">
+      <div className="flex-[0.4] lg:max-w-[300px] flex flex-col items-center">
         <div className="w-full max-w-[500px]">
           
         <SearchForm />
