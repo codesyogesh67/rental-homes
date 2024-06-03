@@ -71,8 +71,8 @@ const Modal: React.FC<ModalProps> = ({
     <>
       <div
         className="
-          justify-center 
-          items-center 
+        justify-center 
+        items-center 
           flex 
           overflow-x-hidden 
           overflow-y-auto 
@@ -81,7 +81,9 @@ const Modal: React.FC<ModalProps> = ({
           z-50 
           outline-none 
           focus:outline-none
-          bg-neutral-800/70
+          bg-neutral-800/70]
+          border border-red-500
+          
    
         "
       >
@@ -90,8 +92,8 @@ const Modal: React.FC<ModalProps> = ({
           my-6
           mx-auto 
           h-full 
-          lg:h-auto
           md:h-auto
+          w-100
           "
         >
           {/*content*/}
@@ -99,30 +101,27 @@ const Modal: React.FC<ModalProps> = ({
             translate
             duration-300
             h-full
-            w-full
-         
+            w-100
             ${showModal ? 'translate-y-0' : 'translate-y-full'}
             ${showModal ? 'opacity-100' : 'opacity-0'}
           `}>
             <div className="
               translate
-              mt-20
               md:mt-36
-              h-full
-              lg:h-auto
-              md:h-auto
-             
-              border-0 
+              h-fit
               rounded-lg 
               shadow-lg 
               relative 
               flex 
-              flex-col 
-              w-full 
+              flex-col
+              items-center 
+              w-screen
+              md:w-full 
               bg-white 
               outline-none 
               focus:outline-none
-            
+              border-0
+              w-100
             "
             >
               {/*header*/}
@@ -131,9 +130,10 @@ const Modal: React.FC<ModalProps> = ({
                 items-center 
                 p-6
                 rounded-t
-                justify-center
-                relative
+                justify-between
+               
                 border-b-[1px]
+                w-full
                 "
               >
                 <button
@@ -142,21 +142,33 @@ const Modal: React.FC<ModalProps> = ({
                     border-0 
                     hover:opacity-70
                     transition
-                    absolute
-                    left-9
+                   
                   "
                   onClick={handleClose}
                 >
                   <IoMdClose size={18} />
                 </button>
+
                 <div className="text-lg font-semibold">
                   {title}
+                </div>
+                <div className="justify-self-end">
+                  <div className="flex items-center">
+                    <div className="h-4 w-4 border border-black-200 rounded-sm mr-2" />
+                  <p>indicates availability</p>
+                  </div>
+                  <div className="flex items-center">
+                  <div className="h-4 w-4 bg-red-500 mr-2 border rounded-sm" />
+                  <p className="align-center">indicates not available</p>
+                  </div>
+                 
+                
                 </div>
               </div>
               {/*body*/}
               <div className="relative p-6">
                 {/* {body} */}
-                <div className="flex">
+                <div className="">
                   <Calendar availDays={availability}/>
                   {/* <Calendar />
                   <Calendar /> */}

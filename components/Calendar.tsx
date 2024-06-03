@@ -19,7 +19,7 @@ export default function Calendar({ dates }: { dates:string}) {
   
 
   const datesArray:string[] = dates.split(",");
-  console.log("Dates array",datesArray)
+
 
   const startDate = new Date(2024, 5, 1); // Month is zero-based (5 for June)
 const endDate = new Date(2024, 7, 31); // Month is zero-based (7 for August)

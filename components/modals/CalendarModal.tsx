@@ -23,16 +23,18 @@ const calendarModal = useCalendarModal()
   
 
 
-    const bodyContent = (
-    <div className="flex justify-center">
-     {/* <Calendar
-        value={dateRange}
-        disabledDates={disabledDates}
-        onChange={(value) => setDateRange(value)}
-      /> */}
-        {/* <Calendar dates={calendarModal.availability} /> */}
-        </div>
-    )
+    // const bodyContent = (
+    // <div className="flex justify-center">
+    //  {/* <Calendar
+    //     value={dateRange}
+    //     disabledDates={disabledDates}
+    //     onChange={(value) => setDateRange(value)}
+    //   /> */}
+    //     {/* <Calendar dates={calendarModal.availability} /> */}
+    //     </div>
+    // )
+
+  const bodyContent = (<></>)
 
   
 
